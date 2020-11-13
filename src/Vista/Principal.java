@@ -40,7 +40,7 @@ public class Principal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 625, Short.MAX_VALUE)
+            .addGap(0, 1101, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -49,13 +49,20 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
+        menu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/im1.png"))); // NOI18N
         menu1.setText("Usuarios");
 
         jMenuItem1.setText("Adm Usuarios");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         menu1.add(jMenuItem1);
 
         jMenuBar1.add(menu1);
 
+        menu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/i4.png"))); // NOI18N
         menu2.setText("Productos");
         menu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,13 +80,20 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(menu2);
 
+        menu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/i2.png"))); // NOI18N
         menu3.setText("Consultas");
 
         jMenuItem3.setText("Realizar consultas");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         menu3.add(jMenuItem3);
 
         jMenuBar1.add(menu3);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/i5.png"))); // NOI18N
         jMenu1.setText("Ventas");
 
         jMenuItem4.setText("Generar venta");
@@ -87,6 +101,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/i3.png"))); // NOI18N
         jMenu5.setText("Reportes");
 
         jMenuItem5.setText("Reportes de ventas");
@@ -107,7 +122,8 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(escritorio)
                 .addContainerGap())
         );
@@ -124,7 +140,20 @@ public class Principal extends javax.swing.JFrame {
         Productos p=new Productos();    
         p.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_ingresarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Usuarios u=new Usuarios();
+        u.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Consultas c=new Consultas();
+        c.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     
     /**
