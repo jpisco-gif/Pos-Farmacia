@@ -6,7 +6,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-     
+       this.setVisible(true);
        this.setLocationRelativeTo(null);
     }
 
@@ -140,13 +140,14 @@ public class Principal extends javax.swing.JFrame {
         Productos p=new Productos();    
         p.setVisible(true);
         this.setVisible(false);
-        
+         
     }//GEN-LAST:event_ingresarActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       
         Usuarios u=new Usuarios();
         u.setVisible(true);
-        this.setVisible(false);
+        this.setVisible(false); 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

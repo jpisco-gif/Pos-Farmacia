@@ -5,20 +5,49 @@
  */
 package Vista;
 
+
+
+import Modelo.ConexionB;
+import Modelo.UsuarioDAO;
+import Modelo.UsuarioM;
+import Modelo.hash;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author V330
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);   
     }
 
+ 
+           /* while(rs.next()){
+                capn=rs.getString("nombre");
+                capr=rs.getString("rol");
+                cape=rs.getString("estado");
+            }
+            if(capr.equals("Administrador")){        
+            }
+            if(capr.equals("Vendedor")){        
+            }
+            if(!capr.equals("Vendedor") && !capr.equals("Administrador)){   
+                JOptionPane.showMessageDialog(null, "ERROR NO EXISTEN LOS DATOS INGRESADOS");
+            }
+            */
+            
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,11 +59,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnIngresar = new javax.swing.JButton();
-        btnUsuario = new javax.swing.JTextField();
-        txtContraseña = new javax.swing.JTextField();
+        btningresar = new javax.swing.JButton();
+        txtusuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
+        txtclave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,11 +70,14 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Contraseña");
 
-        btnIngresar.setText("Ingresar");
+        btningresar.setText("Ingresar");
+        btningresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btningresarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Bienvenido");
-
-        btnSalir.setText("Nueva Cuenta");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,25 +86,20 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel1)))
-                        .addGap(85, 85, 85)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(txtContraseña)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(btnIngresar)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnSalir))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(164, 164, 164)
-                        .addComponent(jLabel3)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btningresar)
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(69, 69, 69)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtusuario, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                            .addComponent(txtclave))))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,20 +109,43 @@ public class Login extends javax.swing.JFrame {
                 .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(btnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresar)
-                    .addComponent(btnSalir))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(txtclave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
+                .addComponent(btningresar)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
+       UsuarioDAO modsql=new UsuarioDAO();
+        UsuarioM mod=new UsuarioM();
+
+       String pass=new String(txtclave.getPassword());
+  
+      if (!txtusuario.getText().equals("") && !pass.equals("")) {
+           String nuevoPass=hash.sha1(pass);
+           mod.setUsuario(txtusuario.getText());
+           mod.setClave(nuevoPass);
+           
+            if (modsql.login(mod)) {
+                Principal frmprincipal=new Principal();
+                frmprincipal.setVisible(true);
+                this.setVisible(false);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+            }
+  
+        } else {
+             JOptionPane.showMessageDialog(null, "Hay campos vacíos, debe llenar todos los campos ");
+        }
+    }//GEN-LAST:event_btningresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,12 +183,13 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnSalir;
-    private javax.swing.JTextField btnUsuario;
+    private javax.swing.JButton btningresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField txtContraseña;
+    private javax.swing.JPasswordField txtclave;
+    private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
+    ConexionB cc=new ConexionB();
+    Connection cn=cc.getConnection();
 }

@@ -8,18 +8,20 @@ public class UsuarioM {
     String usuario;
     String clave;
     String perfil;
+    String estado;
     
-     public UsuarioM(int idU, String nombre, String usuario, String clave, String perfil) {
+      public UsuarioM(){
+     }
+      
+     public UsuarioM(int idU, String nombre, String usuario, String clave, String perfil, String estado) {
         this.idU = idU;
         this.nombre = nombre;
         this.usuario = usuario;
         this.clave = clave;
         this.perfil = perfil;
+        this.estado=estado;
     }
-     
-     public UsuarioM(){
-     }
-     
+   
     public int getIdU() {
         return idU;
     }
@@ -60,5 +62,11 @@ public class UsuarioM {
         this.perfil = perfil;
     }
      
-     
+      public String getEstado() {
+        return perfil;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }
