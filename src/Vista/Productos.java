@@ -149,6 +149,11 @@ public class Productos extends javax.swing.JFrame {
         jLabel11.setText("Estado:");
 
         cbxestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar estado", "Activo", "No activo" }));
+        cbxestado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxestadoActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("CÓDIGO PROVEEDORES"));
 
@@ -473,6 +478,10 @@ public class Productos extends javax.swing.JFrame {
                 }
         }
     }//GEN-LAST:event_btneliminarActionPerformed
+
+    private void cbxestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxestadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxestadoActionPerformed
 
     /**
      * @param args the command line arguments

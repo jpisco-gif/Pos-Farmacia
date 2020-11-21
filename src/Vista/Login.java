@@ -126,12 +126,11 @@ public class Login extends javax.swing.JFrame {
        UsuarioDAO modsql=new UsuarioDAO();
         UsuarioM mod=new UsuarioM();
 
-       String pass=new String(txtclave.getPassword());
   
-      if (!txtusuario.getText().equals("") && !pass.equals("")) {
-           String nuevoPass=hash.sha1(pass);
+      if (!txtusuario.getText().equals("") && !txtclave.getText().equals("")) {
+          
            mod.setUsuario(txtusuario.getText());
-           mod.setClave(nuevoPass);
+           mod.setClave(txtclave.getText());
            
             if (modsql.login(mod)) {
                 Principal frmprincipal=new Principal();
