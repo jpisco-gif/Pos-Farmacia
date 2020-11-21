@@ -347,9 +347,7 @@ public class Usuarios extends javax.swing.JFrame {
             tabla.setValueAt(txtnombreU.getText(), Fila, 1);
             tabla.setValueAt(txtusuario.getText(), Fila, 2);
             tabla.setValueAt(txtclave.getText(), Fila, 3);
-
             limpiar();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al Modificar Producto");
             System.out.println(ex);

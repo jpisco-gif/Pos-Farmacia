@@ -391,9 +391,7 @@ public class Productos extends javax.swing.JFrame {
         try{
             ps=con.prepareStatement("SELECT * FROM producto WHERE idProducto=?");
             ps.setString(1, txtid.getText());
-            rs= ps.executeQuery();
-
-           
+            rs= ps.executeQuery();      
             if (rs.next()) {
                  txtid.setText(rs.getString("idProducto"));
                 txtnombre.setText(rs.getString("nombre"));
@@ -421,7 +419,6 @@ public class Productos extends javax.swing.JFrame {
         ConexionB objCon = new ConexionB();
         Connection con = objCon.getConnection();    
         PreparedStatement ps=null;
-        
          int rpta= JOptionPane.showConfirmDialog(null, "Estás seguro de modificar?");
           if (rpta==JOptionPane.YES_OPTION) {
          try{
@@ -459,7 +456,6 @@ public class Productos extends javax.swing.JFrame {
         ConexionB objCon = new ConexionB();
         Connection con = objCon.getConnection();     
         PreparedStatement ps=null;
-
           int rpta= JOptionPane.showConfirmDialog(null, "Estás seguro de eliminar el registro?");
           if (rpta==JOptionPane.YES_OPTION) {
            try{
@@ -469,10 +465,10 @@ public class Productos extends javax.swing.JFrame {
                 if (res>0) {
                  JOptionPane.showMessageDialog(null, "Producto eliminado");
                  limpiar();
-              } else {
+                  } else {
                      JOptionPane.showMessageDialog(null, "Error al eliminar");           
-            }
-                limpiar();
+                   }
+                  limpiar();
                 } catch(SQLException ex){
                      System.out.println(ex.toString());
                 }
