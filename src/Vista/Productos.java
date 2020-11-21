@@ -374,8 +374,7 @@ public class Productos extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null, "Producto ingresado");
                  limpiar();
             } else {
-                 JOptionPane.showMessageDialog(null, "Error al ingresar producto");
-                 
+                 JOptionPane.showMessageDialog(null, "Error al ingresar producto");             
             }
             con.close();
         } catch(Exception e){
@@ -407,8 +406,7 @@ public class Productos extends javax.swing.JFrame {
                 txtcaducidad.setText(rs.getString("FechaCaducidad"));
                 cbxestado.setSelectedItem(rs.getString("estado"));
             } else {
-                 JOptionPane.showMessageDialog(null, "Error, no existe el producto");
-        
+                 JOptionPane.showMessageDialog(null, "Error, no existe el producto");  
             }
             con.close();
         } catch(Exception e){
@@ -444,8 +442,7 @@ public class Productos extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null, "Producto modificado");
                  limpiar();
             } else {
-                 JOptionPane.showMessageDialog(null, "Error al modificar");
-                 
+                 JOptionPane.showMessageDialog(null, "Error al modificar");     
             }
             con.close();
         } catch(Exception e){
@@ -473,8 +470,7 @@ public class Productos extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null, "Producto eliminado");
                  limpiar();
               } else {
-                     JOptionPane.showMessageDialog(null, "Error al eliminar");
-                 
+                     JOptionPane.showMessageDialog(null, "Error al eliminar");           
             }
                 limpiar();
                 } catch(SQLException ex){
