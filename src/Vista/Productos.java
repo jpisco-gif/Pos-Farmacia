@@ -432,8 +432,7 @@ public class Productos extends javax.swing.JFrame {
             ps.setDate(7, Date.valueOf(txtcaducidad.getText()));
             ps.setString(8, txtstock.getText());
             ps.setString(9, cbxestado.getSelectedItem().toString());
-            ps.setString(10, txtid.getText());
-            
+            ps.setString(10, txtid.getText());      
             int res=ps.executeUpdate();
             if (res>0) {
                  JOptionPane.showMessageDialog(null, "Producto modificado");

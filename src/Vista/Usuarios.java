@@ -322,7 +322,7 @@ public class Usuarios extends javax.swing.JFrame {
         Principal p=new Principal();
         p.setVisible(true);
         this.setVisible(false);
-        
+ 
     }//GEN-LAST:event_btnRegresarUActionPerformed
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
@@ -333,7 +333,6 @@ public class Usuarios extends javax.swing.JFrame {
             ConexionB objCon = new ConexionB();
             Connection conn = objCon.getConnection();
             ps = conn.prepareStatement("UPDATE cuenta SET nombre=?, user=?, pass=?, rol=?, estado=? WHERE idCuenta=?");
-
             ps.setString(1, txtnombreU.getText());
             ps.setString(2, txtusuario.getText());
             ps.setString(3, txtclave.getText());
@@ -341,7 +340,6 @@ public class Usuarios extends javax.swing.JFrame {
             ps.setString(5, cbxestado.getSelectedItem().toString());
             ps.setString(6, txtidU.getText());
             ps.execute();
-
             JOptionPane.showMessageDialog(null, "UsuarioModificado");
             tabla.setValueAt(txtidU.getText(), Fila, 0);
             tabla.setValueAt(txtnombreU.getText(), Fila, 1);

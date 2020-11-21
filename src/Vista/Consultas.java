@@ -196,7 +196,6 @@ public class Consultas extends javax.swing.JFrame {
         if (!"".equals(campo)) {
             where = "WHERE idProducto = '" + campo + "'";
         }
-
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             tabla.setModel(modelo);
@@ -213,7 +212,6 @@ public class Consultas extends javax.swing.JFrame {
 
             ResultSetMetaData rsMd = (ResultSetMetaData) rs.getMetaData();
             int cantidadColumnas = rsMd.getColumnCount();
-
             modelo.addColumn("Codigo");
             modelo.addColumn("Categoria");
             modelo.addColumn("Proveedor");
@@ -223,9 +221,7 @@ public class Consultas extends javax.swing.JFrame {
             modelo.addColumn("Precio venta c/u");
             modelo.addColumn("Fecha vencimiento");
             modelo.addColumn("Stock");
-            modelo.addColumn("Estado");
-         
-         
+            modelo.addColumn("Estado");  
             while (rs.next()) {
                 Object[] filas = new Object[cantidadColumnas];
                 for (int i = 0; i < cantidadColumnas; i++) {
