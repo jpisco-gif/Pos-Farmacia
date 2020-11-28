@@ -58,7 +58,7 @@ public class VentasDAO {
     }
     
     public int GuardarDetalleVenta(DetalleVentas dv){
-        String sql="insert into detalle_ventasventas(idVenta,idProducto,cantidad,precioVenta) values (?,?,?,?)";
+        String sql="insert into detalle_ventas(idVenta,idProducto,cantidad,precioVenta) values (?,?,?,?)";
         try {
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
