@@ -20,7 +20,19 @@ public class ProductoDAO {
     ConexionB cn = new ConexionB();
     PreparedStatement ps;
     ResultSet rs;
-    
+    int r=0;
+    public int ActualizarStock(int cant, int ip){
+        String sql="update producto set stock=? where idProducto=?";
+        try {
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setInt(1, cant);
+            ps.setInt(2, ip);
+            r=ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return r;
+    }
     public Producto listarId(int codigo){
         Producto pr=new Producto();
         String sql="select * from producto where codBarras=?";

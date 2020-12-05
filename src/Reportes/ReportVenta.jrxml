@@ -2,31 +2,36 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportVenta" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a49e791b-b1fa-4459-8968-fbb06c9eefaa">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="35"/>
+	<parameter name="idVentas" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      detalle_ventas.`cantidad` AS detalle_ventas_cantidad,
      producto.`nombre` AS producto_nombre,
-     cliente.`dni` AS cliente_dni,
      cliente.`nombres` AS cliente_nombres,
      ventas.`monto` AS ventas_monto,
-     producto.`precioVenta` AS producto_precioVenta,
      cuenta.`user` AS cuenta_user,
-     ventas.`NumeroSerie` AS ventas_NumeroSerie
+     ventas.`NumeroSerie` AS ventas_NumeroSerie,
+     detalle_ventas.`precioVenta` AS detalle_ventas_precioVenta,
+     producto.`precioVenta` AS producto_precioVenta
 FROM
      `producto` producto INNER JOIN `detalle_ventas` detalle_ventas ON producto.`idProducto` = detalle_ventas.`idProducto`
      INNER JOIN `ventas` ventas ON detalle_ventas.`idVenta` = ventas.`idVenta`
      INNER JOIN `cliente` cliente ON ventas.`idCliente` = cliente.`idCliente`
-     INNER JOIN `cuenta` cuenta ON ventas.`idCuenta` = cuenta.`idCuenta`]]>
+     INNER JOIN `cuenta` cuenta ON ventas.`idCuenta` = cuenta.`idCuenta`
+WHERE
+     detalle_ventas.idVenta = $P!{idVentas}]]>
 	</queryString>
 	<field name="detalle_ventas_cantidad" class="java.lang.Integer"/>
 	<field name="producto_nombre" class="java.lang.String"/>
-	<field name="cliente_dni" class="java.lang.Integer"/>
 	<field name="cliente_nombres" class="java.lang.String"/>
 	<field name="ventas_monto" class="java.lang.Double"/>
-	<field name="producto_precioVenta" class="java.lang.Double"/>
 	<field name="cuenta_user" class="java.lang.String"/>
 	<field name="ventas_NumeroSerie" class="java.lang.String"/>
+	<field name="detalle_ventas_precioVenta" class="java.lang.Double"/>
+	<field name="producto_precioVenta" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -83,41 +88,61 @@ FROM
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="444" y="31" width="100" height="20" uuid="768fc269-e57d-4a88-aeee-70dbf1f7a4c4"/>
+				<textFieldExpression><![CDATA[$F{cuenta_user}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="31" width="100" height="20" uuid="f633eaf1-8497-4fa3-88cd-15d47b77d532"/>
+				<textFieldExpression><![CDATA[$F{cliente_nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="11" width="100" height="20" uuid="6ce8c0ab-dd48-40ed-aca0-cf1019cca6fb"/>
+				<textFieldExpression><![CDATA[Cliente:]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="11" width="100" height="20" uuid="50fa0122-8d09-4af5-b0f8-9c971572c181"/>
+				<textFieldExpression><![CDATA[Vendedor:]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="29" splitType="Stretch">
 			<staticText>
-				<reportElement x="17" y="7" width="57" height="20" uuid="25dedac2-5a9b-4211-94f5-7db6a4471f45"/>
+				<reportElement x="17" y="7" width="100" height="20" uuid="1972b83f-c57b-48d5-9c41-9208cc1a7e7a"/>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="101" y="7" width="100" height="20" uuid="89fe698d-822b-45e4-a897-39e48303712a"/>
+				<reportElement x="157" y="7" width="100" height="20" uuid="5ab6f8e5-ed0e-47f6-a68e-1bd984081128"/>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="332" y="7" width="100" height="20" uuid="2c880144-6d68-4ebe-a0de-186d68153fc4"/>
-				<text><![CDATA[P. Unitario]]></text>
+				<reportElement x="327" y="7" width="100" height="20" uuid="009a4842-79ae-47a6-bec1-b569612b0e98"/>
+				<text><![CDATA[Precio Unit]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="490" y="7" width="54" height="20" uuid="a55bd725-83ff-4008-b909-57b4935ba241"/>
-				<text><![CDATA[Total ]]></text>
+				<reportElement x="455" y="7" width="100" height="20" uuid="0775c7eb-519c-4f4b-869b-a77ac3d785c6"/>
+				<text><![CDATA[Sub total]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="30" y="0" width="25" height="20" uuid="a44dd933-54c3-480e-b5e2-e99d8e03f8b5"/>
+				<reportElement x="17" y="13" width="100" height="20" uuid="d95351d6-1b7c-494a-823f-7f391da15ad7"/>
 				<textFieldExpression><![CDATA[$F{detalle_ventas_cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="332" y="0" width="100" height="20" uuid="38a70228-67fa-4e00-a438-e8f66d67bf74"/>
+				<reportElement x="157" y="13" width="100" height="20" uuid="d5f84316-97d5-4b86-af69-0a288c113892"/>
+				<textFieldExpression><![CDATA[$F{producto_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="13" width="100" height="20" uuid="39ab5c00-ea4b-4ae7-ad66-a946d02504e6"/>
 				<textFieldExpression><![CDATA[$F{producto_precioVenta}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="101" y="0" width="204" height="20" uuid="f7045064-5457-4860-848b-d50824b0c87d"/>
-				<textFieldExpression><![CDATA[$F{producto_nombre}]]></textFieldExpression>
+				<reportElement x="455" y="13" width="100" height="20" uuid="22a6e4f7-6e69-4947-b6d3-4e20cf8f0710"/>
+				<textFieldExpression><![CDATA[$F{detalle_ventas_precioVenta}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
